@@ -8,10 +8,29 @@
 #
 # Setup
 #
+create_file '.ruby-version' do
+  'ruby-2.1'
+end
 initializer 'generators.rb', <<-RUBY
 Rails.application.config.generators do |g|
 end
 RUBY
+
+#
+# haml
+#
+gem 'haml-rails'
+
+#
+# twitter-bootstrap
+#
+# gem 'less-rails'
+# gem 'twitter-bootstrap-rails'
+# gem 'bootstrap-sass'
+# gem 'autoprefixer-rails'
+gem 'twitter-bootswatch-rails'
+gem 'twitter-bootswatch-rails-helpers'
+gem 'therubyracer'
 
 #
 # Mongoid
@@ -44,7 +63,7 @@ end
 #
 # Jasmine
 #
-gem 'jasmine-rails'
+gem 'jasmine-rails', group: [:development, :test]
 run 'brew install phantomjs'
 after_bundle do
   generate 'jasmine_rails:install'
@@ -80,18 +99,18 @@ end
 #
 # FactoryGirl
 say '==> FactoryGirl'
-gem 'factory_girl'
+gem 'factory_girl', group: [:development, :test]
 
 #
 # Faker
 #
-gem 'faker'
+gem 'faker', group: [:development, :test]
 
 #
 # VCR
 #
-gem 'vcr'
-gem 'webmock'
+gem 'vcr', group: [:development, :test]
+gem 'webmock', group: [:development, :test]
 after_bundle do
   create_file 'spec/vcr_helper.rb', <<-RUBY
 require 'vcr'
@@ -118,8 +137,8 @@ run 'bundle install'
 #
 # Git
 #
-after_bundle do
-  git :init
-  git add: '.'
-  git commit: "-a -m 'Initial commit'"
-end
+# after_bundle do
+#   git :init
+#   git add: '.'
+#   git commit: "-a -m 'Initial commit'"
+# end
