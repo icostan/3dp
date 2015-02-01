@@ -15,22 +15,44 @@ initializer 'generators.rb', <<-RUBY
 Rails.application.config.generators do |g|
 end
 RUBY
+add_source 'https://rails-assets.org'
 
 #
-# haml
+# Haml
 #
 gem 'haml-rails'
+after_bundle do
+  generate 'haml:application_layout'
+  remove_file 'app/views/layouts/application.html.erb'
+end
 
 #
 # twitter-bootstrap
 #
-# gem 'less-rails'
-# gem 'twitter-bootstrap-rails'
-# gem 'bootstrap-sass'
-# gem 'autoprefixer-rails'
-gem 'twitter-bootswatch-rails'
-gem 'twitter-bootswatch-rails-helpers'
+gem 'less-rails'
+gem 'less-rails-bootstrap'
 gem 'therubyracer'
+insert_into_file 'app/assets/stylesheets/application.css',
+                 before: " *= require_tree .\n" do
+  " *= require twitter/bootstrap\n"
+end
+insert_into_file 'app/assets/javascripts/application.js',
+                 after: "//= require jquery_ujs\n" do
+  "//= require twitter/bootstrap\n"
+end
+
+#
+# Rails assets
+#
+gem 'rails-assets-bootstrap-admin-template'
+
+#
+# Bower
+#
+gem 'bower-rails'
+after_bundle do
+  generate 'bower_rails:initialize'
+end
 
 #
 # Mongoid
@@ -52,7 +74,7 @@ say '==> RSpec'
 gem 'rspec-rails', group: [:development, :test]
 
 placeholder = "Rails.application.config.generators do |g|\n"
-inject_into_file 'config/initializers/generators.rb', after: placeholder do
+insert_into_file 'config/initializers/generators.rb', after: placeholder do
   "    g.test_framework = :rspec\n"
 end
 
@@ -123,7 +145,7 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 RUBY
-  inject_into_file '.rspec', after: '--require spec_helper\n' do
+  insert_into_file '.rspec', after: '--require spec_helper\n' do
     '--require vcr_helper'
   end
 end
