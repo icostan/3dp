@@ -1,8 +1,8 @@
 #
 # 3 Days Project Template
 #
-# rails new NAME -m 3dp-template.rb --skip-active-record --skip-test-unit --skip-spring
-# bundle exec rake rails:template LOCATION=~/Work/3dp/3dp-template.rba
+# rails new blog -m rails-template.rb --skip-active-record --skip-test-unit --skip-spring --skip-turbolinks
+# bundle exec rake rails:template LOCATION=~/Work/3dp/rails-template.rb
 #
 
 #
