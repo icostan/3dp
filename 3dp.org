@@ -1,6 +1,10 @@
 * 3DP
-  ** DONE Rspec, cucumber, jasmine
-  ** TODO twitter bootstrap + themes integrated
-  ** TODO custom html files with bootstrap support
+  ** DONE rspec, cucumber, jasmine
+  ** DONE default twitter bootstrap
+  ** DONE custom haml scaffold
+  ** DONE add simple form
+  ** TODO support for custom themes/layout
+  ** DONE give https://github.com/decioferreira/bootstrap-generators a try
+  ** TODO support all fields types, datepicker, selects, etc
   
    

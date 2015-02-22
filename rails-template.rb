@@ -1,8 +1,11 @@
+##
 #
-# 3 Days Project Template
+# 3DP Rails Template
 #
-# rails new blog -m rails-template.rb --skip-active-record --skip-test-unit --skip-spring --skip-turbolinks
-# bundle exec rake rails:template LOCATION=~/Work/3dp/rails-template.rb
+##
+
+#
+# Meta
 #
 
 #
@@ -18,16 +21,7 @@ RUBY
 add_source 'https://rails-assets.org'
 
 #
-# Haml
-#
-gem 'haml-rails'
-after_bundle do
-  generate 'haml:application_layout'
-  remove_file 'app/views/layouts/application.html.erb'
-end
-
-#
-# twitter-bootstrap
+# Twitter-Bootstrap
 #
 gem 'less-rails'
 gem 'less-rails-bootstrap'
@@ -40,6 +34,37 @@ insert_into_file 'app/assets/javascripts/application.js',
                  after: "//= require jquery_ujs\n" do
   "//= require twitter/bootstrap\n"
 end
+
+#
+# Haml
+#
+gem 'haml-rails'
+after_bundle do
+  remove_file 'app/views/layouts/application.html.erb'
+end
+
+#
+# Bootstrap generators
+#
+gem 'bootstrap-generators'
+after_bundle do
+  generate 'bootstrap:install --template-engine=haml --skip-turbolinks'
+end
+
+#
+# Simple form
+#
+gem 'simple_form'
+gem 'country_select'
+after_bundle do
+  generate 'simple_form:install --bootstrap --force'
+end
+
+#
+# Bootstrap addons
+#
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
 #
 # Rails assets
