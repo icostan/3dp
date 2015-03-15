@@ -12,7 +12,7 @@
 # Setup
 #
 create_file '.ruby-version' do
-  'ruby-2.1'
+  'ruby-2.2'
 end
 initializer 'generators.rb', <<-RUBY
 Rails.application.config.generators do |g|
