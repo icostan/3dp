@@ -102,6 +102,9 @@ placeholder = "Rails.application.config.generators do |g|\n"
 insert_into_file 'config/initializers/generators.rb', after: placeholder do
   "    g.test_framework = :rspec\n"
 end
+create_file '.rspec' do
+  '--require spec_helper\n'
+end
 
 after_bundle do
   generate 'rspec:install'
