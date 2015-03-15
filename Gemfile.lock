@@ -37,6 +37,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    aruba (0.6.2)
+      childprocess (>= 0.3.6)
+      cucumber (>= 1.1.1)
+      rspec-expectations (>= 2.7.0)
     bower-rails (0.9.2)
     bson (2.3.0)
     builder (3.2.2)
@@ -218,6 +222,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aruba
   bower-rails
   cucumber-rails
   guard

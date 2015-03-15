@@ -1,9 +1,6 @@
+language: ruby
+cache: bundler
 services:
   - mongodb
-before_script:
-  - bundle exec rails new blog -m rails-template.rb --skip-active-record --skip-test-unit --skip-spring --skip-turbolinks
-  - cd blog
 script:
-  - bundle exec rails g scaffold post boolean:boolean email url phone password search uuid text:text file hidden integer:integer float:float range:range date:date time:time country time_zone
-  - bundle exec rails runner 'Post.create!.id'
-  - bundle exec rails runner 'puts Post.count' | grep 1
+  - bundle exec cucumber

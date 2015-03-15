@@ -8,6 +8,7 @@ gem 'mongoid'
 gem 'rspec'
 gem 'jasmine-rails'
 gem 'cucumber-rails', require: false
+gem 'aruba'
 gem 'guard'
 gem 'guard-rspec'
 gem 'guard-jasmine'
