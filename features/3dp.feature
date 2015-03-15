@@ -4,10 +4,8 @@ Feature: 3dp
   I want to release apps in no time
   In order to make gigantic piles of money :)
 
-  Scenario: Scaffold generation
-    Given a blog app
-    When I generate "Post" scaffold
-    And I create "Post" record
+  Scenario: MondodDB support
+    When I create Post record
     Then I run "bundle exec rails runner 'puts Post.count'"
     And it should pass with:
       """
