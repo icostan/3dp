@@ -1,4 +1,4 @@
-# 3dp
+# 3dp [![Build Status](https://travis-ci.org/icostan/3dp.svg)](https://travis-ci.org/icostan/3dp)
 3 Days Project
 
 ## Generation
