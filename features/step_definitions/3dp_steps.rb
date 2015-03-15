@@ -8,6 +8,8 @@ When(/^I generate "(.*?)" scaffold$/) do |name|
 end
 
 When(/^I create "(.*?)" record$/) do |name|
+  execute "bundle exec rails runner '#{name}.delete_all'"
+  sleep 1
   execute "bundle exec rails runner '#{name}.create!.id'"
 end
 
