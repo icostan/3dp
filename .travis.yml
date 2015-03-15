@@ -1,4 +1,4 @@
 script:
-  - rails new blog -m rails-template.rb --skip-active-record --skip-test-unit --skip-spring --skip-turbolinks
-  - rails g scaffold post boolean:boolean email url phone password search uuid text:text file hidden integer:integer float:float range:range date:date time:time country time_zone
-  - cd blog && rails runner 'puts Post.count' || grep 0
+  - bundle exec rails new blog -m rails-template.rb --skip-active-record --skip-test-unit --skip-spring --skip-turbolinks
+  - bundle exec rails g scaffold post boolean:boolean email url phone password search uuid text:text file hidden integer:integer float:float range:range date:date time:time country time_zone
+  - cd blog && bundle exec rails runner 'puts Post.count' || grep 0
