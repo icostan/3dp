@@ -9,6 +9,7 @@ gem 'mongoid'
 gem 'rspec-rails'
 gem 'jasmine-rails'
 gem 'cucumber-rails', require: false
+gem 'database_cleaner', require: false
 gem 'aruba'
 gem 'guard'
 gem 'guard-rspec'

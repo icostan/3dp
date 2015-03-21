@@ -11,4 +11,4 @@ system 'bundle exec rails new blog -m rails-template.rb --skip-active-record --s
 
 puts ''
 puts '==> Generate Post scaffold...'
-system 'cd blog && bundle exec rails g scaffold Post boolean:boolean email url phone password search uuid file hidden integer:integer float:float range:range date:date time:time country time_zone'
+system 'cd blog && bundle exec rails g scaffold Post title active:boolean'

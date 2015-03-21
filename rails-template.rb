@@ -34,6 +34,8 @@ insert_into_file 'app/assets/javascripts/application.js',
                  after: "//= require jquery_ujs\n" do
   "//= require twitter/bootstrap\n"
 end
+copy_file 'public/favicon.ico', 'public/apple-touch-icon.ico'
+copy_file 'public/favicon.ico', 'public/apple-touch-icon-precomposed.ico'
 
 #
 # Haml
