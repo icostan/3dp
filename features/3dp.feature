@@ -40,7 +40,7 @@ Feature: 3dp
   
   Scenario: MongoDB support
     When I create Post record
-    And I run "bundle exec rails runner 'puts Post.count'"
+    And I run `bundle exec rails runner 'puts Post.count'`
     Then it should pass with:
       """
       1
