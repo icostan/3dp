@@ -30,12 +30,25 @@ Feature: 3dp
       30 examples, 0 failures, 17 pending
       """
   
+  @local
   Scenario: Guard support
     When I run `bundle exec guard` interactively
     And I type "q"
     Then it should pass with:
       """
       - INFO - Bye bye...
+      """
+  
+  Scenario: Guard support
+    When I run `bundle exec guard list`
+    Then it should pass with:
+      """
+        +---------+-----------+
+        | Plugin  | Guardfile |
+        +---------+-----------+
+        | Jasmine | ✔         |
+        | Rspec   | ✔         |
+        +---------+-----------+
       """
   
   Scenario: MongoDB support

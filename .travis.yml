@@ -3,4 +3,4 @@ cache: bundler
 services:
   - mongodb
 script:
-  - bundle exec cucumber
+  - bundle exec cucumber -p ci
