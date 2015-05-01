@@ -27,17 +27,17 @@ Feature: 3dp
     When I run `bundle exec rake spec`
     Then it should pass with:
       """
-      30 examples, 0 failures, 17 pending
+      60 examples, 0 failures, 34 pending
       """
   
-  @local
-  Scenario: Guard support
-    When I run `bundle exec guard` interactively
-    And I type "q"
-    Then it should pass with:
-      """
-      - INFO - Bye bye...
-      """
+  # @local
+  # Scenario: Guard support
+  #   When I run `bundle exec guard` interactively
+  #   And I type "q"
+  #   Then it should pass with:
+  #     """
+  #     - INFO - Bye bye...
+  #     """
   
   Scenario: Guard support
     When I run `bundle exec guard list`
@@ -52,8 +52,8 @@ Feature: 3dp
       """
   
   Scenario: MongoDB support
-    When I create Post record
-    And I run `bundle exec rails runner 'puts Post.count'`
+    When I create Guest record
+    And I run `bundle exec rails runner 'puts Guest.count'`
     Then it should pass with:
       """
       1

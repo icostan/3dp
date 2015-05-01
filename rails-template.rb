@@ -12,13 +12,13 @@
 # Setup
 #
 create_file '.ruby-version' do
-  'ruby-2.2'
+  'ruby-2.2.2'
 end
 initializer 'generators.rb', <<-RUBY
 Rails.application.config.generators do |g|
 end
 RUBY
-add_source 'https://rails-assets.org'
+# add_source 'https://rails-assets.org'
 
 #
 # Twitter-Bootstrap
@@ -71,7 +71,7 @@ gem 'bootstrap3-datetimepicker-rails'
 #
 # Rails assets
 #
-gem 'rails-assets-bootstrap-admin-template'
+# gem 'rails-assets-bootstrap-admin-template'
 
 #
 # Bower
@@ -113,7 +113,7 @@ end
 # Jasmine
 #
 gem 'jasmine-rails', group: [:development, :test]
-run 'brew install phantomjs'
+run 'brew info phantomjs 2>&1 1>/dev/null || brew install phantomjs'
 after_bundle do
   generate 'jasmine_rails:install'
 end
@@ -175,6 +175,48 @@ RUBY
   insert_into_file '.rspec', after: '--require spec_helper\n' do
     '--require vcr_helper'
   end
+end
+
+#
+# Analytics
+#
+# gem 'rack-google-analytics'
+# after_bundle do
+#   create_file 'config/initializers/google-analytics.rb', <<-RUBY
+# require 'rack/google-analytics'
+# Rails.configuration.middleware.use Rack::GoogleAnalytics, tracker: '#{ENV['3DP_GA']}'
+#   RUBY
+# end
+gem 'intercom-rails'
+after_bundle do
+  generate "intercom:config #{ENV['3DP_INTERCOM']}" # hwclugky
+end
+
+#
+# Pow
+#
+gem 'powder', group: [:development]
+after_bundle do
+  create_file '.powder', <<-TXT
+syntivo
+  TXT
+  run 'bundle exec powder link'
+  create_file '.powrc', <<-TXT
+if [ -f "$rvm_path/scripts/rvm" ]; then
+  source "$rvm_path/scripts/rvm"
+
+  if [ -f ".ruby-version" ]; then
+    rvm use `cat .ruby-version`
+  fi
+fi
+  TXT
+end
+
+#
+# Guests
+#
+after_bundle do
+  generate :scaffold, 'guest name email'
 end
 
 #

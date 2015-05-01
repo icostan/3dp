@@ -1,7 +1,7 @@
-When(/^I create Post record$/) do
+When(/^I create Guest record$/) do
   # TODO: find a way to cleanup db
-  execute "bundle exec rails runner 'Post.delete_all'"
-  execute "bundle exec rails runner 'Post.create!.id'"
+  execute "bundle exec rails runner 'Guest.delete_all'"
+  execute "bundle exec rails runner 'Guest.create!.id'"
 end
 
 def execute(cmd)
