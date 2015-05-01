@@ -27,7 +27,7 @@ Feature: 3dp
     When I run `bundle exec rake spec`
     Then it should pass with:
       """
-      60 examples, 0 failures, 34 pending
+      30 examples, 0 failures, 17 pending
       """
   
   # @local
