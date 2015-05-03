@@ -125,12 +125,18 @@ say '==> Cucumber'
 
 gem 'cucumber-rails', require: false, group: [:development, :test]
 gem 'capybara', group: [:development, :test]
+gem 'capybara-screenshot', group: [:development, :test]
 gem 'database_cleaner', group: [:development, :test]
 gem 'mongoid-tree', group: [:development, :test]
+gem 'selenium-webdriver', group: [:development, :test]
 
 after_bundle do
   generate 'cucumber:install --capybara --rspec'
   gsub_file 'features/support/env.rb', '.strategy = :transaction', '.strategy = :truncation'
+  create_file 'features/support/webmock.rb', <<-RUBY
+# require 'webmock/cucumber'
+# WebMock.allow_net_connect!
+  RUBY
 end
 
 #
