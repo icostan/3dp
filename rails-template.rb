@@ -180,16 +180,68 @@ end
 #
 # Analytics
 #
-# gem 'rack-google-analytics'
-# after_bundle do
-#   create_file 'config/initializers/google-analytics.rb', <<-RUBY
-# require 'rack/google-analytics'
-# Rails.configuration.middleware.use Rack::GoogleAnalytics, tracker: '#{ENV['3DP_GA']}'
-#   RUBY
-# end
-gem 'intercom-rails'
+gem 'rack-tracker'
 after_bundle do
-  generate "intercom:config #{ENV['3DP_INTERCOM']}" # hwclugky
+  create_file 'config/initializer/rack-tracker.rb', <<-RUBY
+Rails.application.config.middleware.use Rack::Tracker do
+  handler :google_analytics, { tracker: ENV['GA_TRACKER'] }
+end
+  RUBY
+end
+# gem 'intercom-rails'
+# after_bundle do
+#   generate "intercom:config #{ENV['3DP_INTERCOM']}"
+# end
+
+#
+# Monitoring/Alerts
+#
+gem 'newrelic_rpm'
+after_bundle do
+  create_file 'config/newrelic.yml', <<-YML
+common: &default_settings
+  license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
+  app_name: <%= ENV["NEW_RELIC_APP_NAME"] %>
+  monitor_mode: true
+  developer_mode: false
+  log_level: info
+  browser_monitoring:
+      auto_instrument: true
+  audit_log:
+    enabled: false
+  capture_params: false
+  transaction_tracer:
+    enabled: true
+    transaction_threshold: apdex_f
+    record_sql: obfuscated
+    stack_trace_threshold: 0.500
+  error_collector:
+    enabled: true
+    ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
+
+development:
+  <<: *default_settings
+  monitor_mode: false
+  app_name: <%= ENV["NEW_RELIC_APP_NAME"] %> (Development)
+  developer_mode: true
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+production:
+  <<: *default_settings
+  monitor_mode: true
+
+staging:
+  <<: *default_settings
+  monitor_mode: false
+  app_name: <%= ENV["NEW_RELIC_APP_NAME"] %> (Staging)
+  YML
+end
+gem 'rollbar'
+after_bundle do
+  generate 'rollbar'
 end
 
 #
@@ -200,7 +252,6 @@ after_bundle do
   create_file '.powder', <<-TXT
 syntivo
   TXT
-  run 'bundle exec powder link'
   create_file '.powrc', <<-TXT
 if [ -f "$rvm_path/scripts/rvm" ]; then
   source "$rvm_path/scripts/rvm"
@@ -213,7 +264,7 @@ fi
 end
 
 #
-# Guests
+# Scaffolding
 #
 after_bundle do
   generate :scaffold, 'guest name email'
@@ -228,8 +279,8 @@ run 'bundle install'
 #
 # Git
 #
-# after_bundle do
-#   git :init
-#   git add: '.'
-#   git commit: "-a -m 'Initial commit'"
-# end
+after_bundle do
+  git :init
+  git add: '.'
+  git commit: "-a -m 'Initial commit'"
+end
