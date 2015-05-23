@@ -7,6 +7,9 @@
 #
 # Meta
 #
+def source_paths
+  super + [File.join(File.expand_path(File.dirname(__FILE__)), 'rails-templates')]
+end
 
 #
 # Setup
@@ -36,6 +39,13 @@ insert_into_file 'app/assets/javascripts/application.js',
 end
 copy_file 'public/favicon.ico', 'public/apple-touch-icon.ico'
 copy_file 'public/favicon.ico', 'public/apple-touch-icon-precomposed.ico'
+
+#
+# Landing page
+#
+directory 'public/css', 'public/css'
+directory 'public/js', 'public/js'
+copy_file 'public/index.html', 'public/index.html'
 
 #
 # Haml
@@ -164,8 +174,8 @@ gem 'faker', group: [:development, :test]
 #
 # VCR
 #
-gem 'vcr', group: [:development, :test]
-gem 'webmock', group: [:development, :test]
+gem 'vcr', group: [:test]
+gem 'webmock', group: [:test]
 after_bundle do
   create_file 'spec/vcr_helper.rb', <<-RUBY
 require 'vcr'
