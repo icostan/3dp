@@ -64,21 +64,21 @@ after_bundle do
 end
 
 #
-# Simple form
-#
-gem 'simple_form'
-gem 'country_select'
-after_bundle do
-  generate 'simple_form:install --bootstrap --force'
-end
-
-#
 # Bootstrap addons
 #
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
 #
+# Simple form
+#
+say '==> Simpleform'
+gem 'simple_form'
+gem 'country_select'
+after_bundle do
+  generate 'simple_form:install --bootstrap --force'
+end
+
 # Rails assets
 #
 # gem 'rails-assets-bootstrap-admin-template'
@@ -86,6 +86,7 @@ gem 'bootstrap3-datetimepicker-rails'
 #
 # Bower
 #
+say '==> Bower-rails'
 gem 'bower-rails'
 after_bundle do
   generate 'bower_rails:initialize'
@@ -95,12 +96,20 @@ end
 # Mongoid
 #
 say '==> Mongoid'
-
 gem 'bson_ext'
 gem 'mongoid'
-
 after_bundle do
   generate 'mongoid:config'
+end
+
+#
+# Devise
+#
+say '==> Devise'
+gem 'devise'
+after_bundle do
+  generate 'devise:install'
+  generate 'devise User'
 end
 
 #
