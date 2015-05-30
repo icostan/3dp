@@ -56,6 +56,16 @@ after_bundle do
 end
 
 #
+# Simple form
+#
+say '==> Simpleform'
+gem 'simple_form'
+gem 'country_select'
+after_bundle do
+  generate 'simple_form:install --bootstrap --force'
+end
+
+#
 # Bootstrap generators
 #
 gem 'bootstrap-generators'
@@ -68,16 +78,6 @@ end
 #
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
-
-#
-# Simple form
-#
-say '==> Simpleform'
-gem 'simple_form'
-gem 'country_select'
-after_bundle do
-  generate 'simple_form:install --bootstrap --force'
-end
 
 # Rails assets
 #
@@ -111,6 +111,28 @@ after_bundle do
   generate 'devise:install'
   generate 'devise User'
 end
+
+#
+# Redis/Resque
+#
+say '==> Redis/Resque'
+gem 'redis'
+gem 'resque'
+gem 'resque-web', require: 'resque_web'
+gem 'resque-scheduler'
+# after_bundle do
+#   create_file 'config/initializers/redis.rb', <<-RUBY
+# REDIS = Redis.new url: ENV['REDIS_URL']
+#   RUBY
+#   create_file 'config/initializers/resque.rb', <<-RUBY
+# require 'resque'
+# Resque.redis = ENV['REDIS_URL']
+#   RUBY
+#   create_file 'lib/tasks/resque.rake', <<-RUBY
+# require 'resque/tasks'
+# task 'resque:setup' => :environment
+# RUBY
+# end
 
 #
 # RSpec
@@ -173,7 +195,7 @@ end
 #
 # FactoryGirl
 say '==> FactoryGirl'
-gem 'factory_girl', group: [:development, :test]
+gem 'factory_girl_rails', group: [:development, :test]
 
 #
 # Faker
