@@ -96,8 +96,7 @@ end
 # Mongoid
 #
 say '==> Mongoid'
-gem 'bson_ext'
-gem 'mongoid'
+gem 'mongoid', '~> 5.0'
 after_bundle do
   generate 'mongoid:config'
 end
@@ -313,9 +312,9 @@ end
 #
 # Scaffolding
 #
-after_bundle do
-  generate :scaffold, 'guest name email'
-end
+# after_bundle do
+#   generate :scaffold, 'guest name email'
+# end
 
 #
 # Bundle
