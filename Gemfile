@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.2.4'
 
 gem 'rake'
 gem 'rails'
@@ -15,3 +15,4 @@ gem 'aruba'
 gem 'guard'
 gem 'guard-rspec'
 gem 'guard-jasmine'
+gem 'rubocop'
