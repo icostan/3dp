@@ -15,7 +15,7 @@ end
 # Setup
 #
 create_file '.ruby-version' do
-  'ruby-2.2.2'
+  'ruby-2.2.4'
 end
 initializer 'generators.rb', <<-RUBY
 Rails.application.config.generators do |g|
@@ -180,6 +180,20 @@ after_bundle do
 end
 
 #
+# Rubocop
+#
+gem 'rubocop', group: [:development, :test]
+after_bundle do
+  create_file '.rubocop.yml', <<-TXT
+Style/Documentation:
+    Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+  TXT
+end
+
+#
 # Guard
 #
 say '==> Guard'
@@ -308,13 +322,6 @@ if [ -f "$rvm_path/scripts/rvm" ]; then
 fi
   TXT
 end
-
-#
-# Scaffolding
-#
-# after_bundle do
-#   generate :scaffold, 'guest name email'
-# end
 
 #
 # Bundle
