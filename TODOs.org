@@ -1,0 +1,15 @@
+* TODOs
+** DONE rspec, cucumber, jasmine
+** DONE default twitter bootstrap
+** DONE custom haml scaffold
+** DONE add simple form
+** support for custom themes/layout
+** DONE give https://github.com/decioferreira/bootstrap-generators a try
+** support all fields types, datepicker, selects, etc
+** DONE acceptance test for 3dp generator
+** remove apple-touch-icons 404 request
+** change org-mode theme
+** test with postgresql
+** make it idempotent to incrementally support new tools
+** DONE upgrade to latest Ruby/gems
+   CLOSED: [2019-07-20 Sat 20:01]

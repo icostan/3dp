@@ -9,7 +9,7 @@ rails new blog -m ~/Projects/3dp/rails-template.rb  --skip-test-unit  --skip-spr
 
 Enhance existing app:
 ```shell
-bundle exec rake rails:template LOCATION=~/Projects/3dp/rails-template.rb
+bundle exec rake app:template LOCATION=~/Projects/3dp/rails-template.rb
 ```
 
 Generate default scaffold:
