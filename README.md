@@ -4,12 +4,12 @@
 ## Generation
 Generate new rails app:
 ```shell
-rails new blog -m rails-template.rb --skip-active-record --skip-test-unit --skip-spring --skip-turbolinks
+rails new blog -m ~/Projects/3dp/rails-template.rb  --skip-test-unit  --skip-spring --skip-turbolinks
 ```
 
 Enhance existing app:
 ```shell
-bundle exec rake rails:template LOCATION=~/Work/3dp/rails-template.rb
+bundle exec rake rails:template LOCATION=~/Projects/3dp/rails-template.rb
 ```
 
 Generate default scaffold:

@@ -1,12 +1,16 @@
 source 'https://rubygems.org'
-ruby '2.2.4'
+ruby '2.6.3'
 
 gem 'rake'
 gem 'rails'
+gem 'irb'
+gem 'bootsnap', require: false
 gem 'simple_form'
 gem 'bower-rails'
 gem 'bootstrap-generators'
-gem 'mongoid'
+# gem 'mongoid'
+gem 'sqlite3'
+gem 'pg'
 gem 'rspec-rails'
 gem 'jasmine-rails'
 gem 'cucumber-rails', require: false

@@ -15,7 +15,7 @@ end
 # Setup
 #
 create_file '.ruby-version' do
-  'ruby-2.2.4'
+  'ruby-2.6.3'
 end
 initializer 'generators.rb', <<-RUBY
 Rails.application.config.generators do |g|
@@ -95,11 +95,11 @@ end
 #
 # Mongoid
 #
-say '==> Mongoid'
-gem 'mongoid', '~> 5.0'
-after_bundle do
-  generate 'mongoid:config'
-end
+# say '==> Mongoid'
+# gem 'mongoid', '~> 5.0'
+# after_bundle do
+#   generate 'mongoid:config'
+# end
 
 #
 # Devise
@@ -153,7 +153,8 @@ end
 # Jasmine
 #
 gem 'jasmine-rails', group: [:development, :test]
-run 'brew info phantomjs 2>&1 1>/dev/null || brew install phantomjs'
+# run 'brew info phantomjs 2>&1 1>/dev/null || brew install phantomjs'
+# run 'pacman -S phantomjs'
 after_bundle do
   generate 'jasmine_rails:install'
 end
@@ -164,11 +165,11 @@ end
 say '==> Cucumber'
 
 gem 'cucumber-rails', require: false, group: [:development, :test]
-gem 'capybara', group: [:development, :test]
+# gem 'capybara', group: [:development, :test]
 gem 'capybara-screenshot', group: [:development, :test]
 gem 'database_cleaner', group: [:development, :test]
-gem 'mongoid-tree', group: [:development, :test]
-gem 'selenium-webdriver', group: [:development, :test]
+# gem 'mongoid-tree', group: [:development, :test]
+# gem 'selenium-webdriver', group: [:development, :test]
 
 after_bundle do
   generate 'cucumber:install --capybara --rspec'
@@ -206,9 +207,9 @@ after_bundle do
 end
 
 #
-# FactoryGirl
-say '==> FactoryGirl'
-gem 'factory_girl_rails', group: [:development, :test]
+# FactoryBot
+say '==> FactoryBot'
+gem 'factory_bot_rails', group: [:development, :test]
 
 #
 # Faker
@@ -326,8 +327,8 @@ end
 #
 # Bundle
 #
-say '==> Running Bundler install. This will take a while.'
-run 'bundle install'
+# say '==> Running Bundler install. This will take a while.'
+# run 'bundle install'
 
 #
 # Git
